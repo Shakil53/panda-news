@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import { ImGoogle, ImGithub, ImFacebook, ImTwitter, ImTwitch, ImInstagram, ImPinterest2 } from "react-icons/im";
+import { ImGoogle, ImGithub, ImFacebook, ImTwitter, ImTwitch, ImInstagram, ImPinterest2, ImWhatsapp } from "react-icons/im";
 import ListGroup from 'react-bootstrap/ListGroup';
 import BrandCalrosle from '../BrandCalrosle/BrandCalrosle';
 
@@ -16,11 +16,12 @@ const RightSideComponent = () => {
             </ButtonGroup>
             <ListGroup>
 
-                <ListGroup.Item variant='secondary' className='mb-3'><ImFacebook></ImFacebook> Facebook</ListGroup.Item>
-                <ListGroup.Item variant='secondary' className='mb-3'><ImTwitter></ImTwitter> Twitter</ListGroup.Item>
-                <ListGroup.Item variant='secondary' className='mb-3'><ImTwitch></ImTwitch> Twitch</ListGroup.Item>
-                <ListGroup.Item variant='secondary' className='mb-3'><ImInstagram></ImInstagram> Instagram</ListGroup.Item>
-                <ListGroup.Item variant='secondary' className='mb-3'><ImPinterest2></ImPinterest2> Pinterest</ListGroup.Item>
+                <ListGroup.Item variant='secondary' className='mb-2'><ImFacebook></ImFacebook> Facebook</ListGroup.Item>
+                <ListGroup.Item variant='secondary' className='mb-2'><ImTwitter></ImTwitter> Twitter</ListGroup.Item>
+                <ListGroup.Item variant='secondary' className='mb-2'><ImTwitch></ImTwitch> Twitch</ListGroup.Item>
+                <ListGroup.Item variant='secondary' className='mb-2'><ImInstagram></ImInstagram> Instagram</ListGroup.Item>
+                <ListGroup.Item variant='secondary' className='mb-2'><ImWhatsapp></ImWhatsapp> Instagram</ListGroup.Item>
+                <ListGroup.Item variant='secondary' className='mb-2'><ImPinterest2></ImPinterest2> Pinterest</ListGroup.Item>
             </ListGroup>
             <div>
                 <BrandCalrosle></BrandCalrosle>
