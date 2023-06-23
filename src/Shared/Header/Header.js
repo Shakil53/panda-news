@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Link } from 'react-router-dom';
+import { AuthContex } from '../../context/AuthProvider/AuthProdiver';
 
 const Header = () => {
+    const { user } = useContext(AuthContex);
     return (
         <Navbar expand="lg" className="bg-body-tertiary mb-4">
             <Container>
@@ -26,6 +28,12 @@ const Header = () => {
                                 Separated link
                             </NavDropdown.Item>
                         </NavDropdown>
+                    </Nav>
+                    <Nav>
+                        <Nav.Link href="#deets">{user?.display}</Nav.Link>
+                        <Nav.Link eventKey={2} href="#memes">
+                            Dank memes
+                        </Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
