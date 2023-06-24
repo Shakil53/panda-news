@@ -4,10 +4,12 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Link } from 'react-router-dom';
-import { AuthContex } from '../../context/AuthProvider/AuthProdiver';
+import { AuthContext } from '../../context/AuthProvider/AuthProdiver';
+import { FaUser } from 'react-icons/fa';
+import { Image } from 'react-bootstrap';
 
 const Header = () => {
-    const { user } = useContext(AuthContex);
+    const { user } = useContext(AuthContext);
     return (
         <Navbar expand="lg" className="bg-body-tertiary mb-4">
             <Container>
@@ -29,10 +31,17 @@ const Header = () => {
                             </NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
-                    <Nav>
-                        <Nav.Link href="#deets">{user?.display}</Nav.Link>
+                    <Nav className='justify-content-between align-items-center'>
+                        <Nav.Link href="#deets">{user?.displayName}</Nav.Link>
                         <Nav.Link eventKey={2} href="#memes">
-                            Dank memes
+                            {
+                                user.photoURL ?
+                                    <Image roundedCircle
+                                        src={user.photoURL}
+                                        style={{ height: '40px' }}>
+                                    </Image>
+                                    : <FaUser></FaUser>
+                            }
                         </Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
