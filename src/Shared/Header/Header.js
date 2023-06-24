@@ -6,10 +6,16 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider/AuthProdiver';
 import { FaUserAlt } from 'react-icons/fa';
-import { Image } from 'react-bootstrap';
+import { Button, Image } from 'react-bootstrap';
 
 const Header = () => {
-    const { user } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
+
+    const handleLogOut = () => {
+        logOut()
+            .then(() => { })
+            .catch(error => console.error(error))
+    }
     return (
         <Navbar expand="lg" className="bg-body-tertiary mb-4">
             <Container>
@@ -33,17 +39,29 @@ const Header = () => {
                     </Nav>
                     <Nav className='justify-content-between align-items-center'>
                         <Nav.Link href="#deets">
-                            {user?.displayName}</Nav.Link>
+                            {user?.uid ?
+                                <><span>{user?.displayName}</span>
+
+                                </>
+                                :
+                                <div>
+                                    <Link to={'/login'}>Login</Link>
+                                    <Link to={'/register'}>Register</Link>
+                                </div>
+                            }
+                        </Nav.Link>
                         <Nav.Link eventKey={2} href="#memes">
                             {
                                 user?.photoURL ?
                                     <Image
                                         style={{ height: '40px' }}
                                         roundedCircle
-                                        src={user.photoURL}>
+                                        src={user?.photoURL}>
                                     </Image>
                                     : <FaUserAlt></FaUserAlt>
+
                             }
+                            <Button className='ms-3' variant='outline-dark' onClick={handleLogOut}>Log Out</Button>
                         </Nav.Link>
                     </Nav>
                 </Navbar.Collapse>

@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { getAuth, onAuthStateChanged, signInWithPopup } from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
 import app from '../../FireBase/FireBase.config.init';
 
 export const AuthContext = createContext();
@@ -12,6 +12,17 @@ const AuthProdiver = ({ children }) => {
 
     const providerLogIn = (provider) => {
         return signInWithPopup(auth, provider);
+
+    }
+
+    const createUser = (email, password) => {
+        return createUserWithEmailAndPassword(auth, email, password)
+    }
+    const signIn = (email, password) => {
+        return signInWithEmailAndPassword(auth, email, password)
+    }
+    const logOut = () => {
+        return signOut(auth)
     }
 
     useEffect(() => {
@@ -24,7 +35,7 @@ const AuthProdiver = ({ children }) => {
         }
     }, [])
 
-    const authInfo = { user, providerLogIn };
+    const authInfo = { user, providerLogIn, logOut, createUser, signIn };
 
 
     return (
