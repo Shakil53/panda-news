@@ -5,6 +5,7 @@ import News from "../../Pages/News/News";
 import Category from "../../Pages/Category/Category/Category";
 import Login from "../../Pages/Login/Login";
 import Register from "../../Pages/Login/Register/Register";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 
 export const router = createBrowserRouter([

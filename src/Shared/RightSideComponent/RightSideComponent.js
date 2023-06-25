@@ -25,8 +25,8 @@ const RightSideComponent = () => {
     }
     return (
         <div>
-            <ButtonGroup vertical>
-                <Button onClick={handleGoogleSignIn} className="mb-2" variant="outline-primary"><ImGoogle /> Login with Google</Button>
+            <ButtonGroup vertical className='w-100'>
+                <Button onClick={handleGoogleSignIn} className="mb-2" variant="outline-primary"  ><ImGoogle /> Login with Google</Button>
                 <Button variant="outline-dark"><ImGithub /> Login with Github</Button>
                 <h5 className='mt-4 '>Find Us On</h5>
             </ButtonGroup>

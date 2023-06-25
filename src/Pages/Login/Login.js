@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { AuthContext } from '../../context/AuthProvider/AuthProdiver';
@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const { signIn } = useContext(AuthContext);
+    const [error, setError] = useState('');
 
     const naviGate = useNavigate();
 
@@ -14,14 +15,19 @@ const Login = () => {
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
+
         signIn(email, password)
             .then(result => {
                 const user = result.user;
                 console.log(user);
                 form.reset();
+                setError('')
                 naviGate('/');
             })
-            .catch(error => console.error(error))
+            .catch(error => {
+                console.error(error)
+                setError(error.message)
+            })
     }
     return (
         <Form onSubmit={handleSubmit}>
@@ -41,7 +47,7 @@ const Login = () => {
                 Login
             </Button>
             <Form.Text className='text-danger'>
-                We'll never share your email with anyone else.
+                {error}
             </Form.Text>
         </Form>
     );

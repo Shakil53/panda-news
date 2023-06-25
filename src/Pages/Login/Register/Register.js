@@ -1,11 +1,13 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { AuthContext } from '../../../context/AuthProvider/AuthProdiver';
 import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
+
     const naviGate = useNavigate()
+    const [error, setError] = useState('');
 
     const { createUser } = useContext(AuthContext);
 
@@ -22,10 +24,15 @@ const Register = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                setError('');
                 form.reset();
+
                 naviGate('/login')
             })
-            .catch(error => console.log(error))
+            .catch(error => {
+                console.log(error);
+                setError(error.message)
+            })
     }
     return (
         <Form onSubmit={handleSubmit}>
@@ -36,13 +43,13 @@ const Register = () => {
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Photo URL</Form.Label>
-                <Form.Control name='photo' type="text" placeholder="Enter your photo url" required />
+                <Form.Control name='photo' type="text" placeholder="Enter your photo url" />
 
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Email Address</Form.Label>
-                <Form.Control name='email' type="password" placeholder="Password" required />
+                <Form.Control name='email' type="email" placeholder="Password" required />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
@@ -54,7 +61,7 @@ const Register = () => {
                 Register
             </Button>
             <Form.Text className='text-danger'>
-                We'll never share your email with anyone else.
+                {error}
             </Form.Text>
         </Form>
     );
